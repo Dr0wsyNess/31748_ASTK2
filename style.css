@@ -1,0 +1,121 @@
+.logo {
+    padding-top: 10px;
+}
+
+footer {
+    text-align: center;
+    background-color: slateblue ;
+    color: white;
+    padding: 10px;
+}
+
+.navReservation {
+    float: right;
+}
+
+.nav {
+    display: flex;
+    overflow: hidden;
+    position: sticky;
+    background-color: slateblue;
+    text-align: center;
+    }
+
+.nav a {
+    display: inline-block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    background-color: mediumslateblue;
+}
+
+.nav a.active {
+    background-color: midnightblue;
+}
+
+.main {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.item {
+    display: block;
+    text-align: center;
+    border: 2px solid grey;
+    margin: 8px;
+    padding: 10px;
+    background-color: white;
+}
+
+.item:hover {
+    background-color: whitesmoke;
+}
+
+.default-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 15px;
+    color: white;
+    background-color: mediumslateblue;
+    border-radius: 10px;
+    border-color: slateblue;
+}
+
+.default-btn:hover {
+    background-color: midnightblue;
+}
+
+.default-btn:disabled {
+    color: grey;
+    background-color: lightgray;
+    border-radius: 10px;
+    border-color: grey;
+}
+
+.reservation-btn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    color: white;
+    background-color: mediumslateblue;
+    border-radius: 50px;
+    border-color: slateblue;
+    padding: 10px;
+    bottom: 40px;
+    right: 40px;
+    box-shadow: 2px 2px 3px #999;
+}
+
+.searchbar {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    padding: 10px;
+}
+
+.searchbar input {
+    height: 30px;
+    width: 100%;
+    border-radius: 10px 0px 0px 10px;
+    border-color: slateblue;
+    padding: 0px 20px;
+}
+
+.searchbar button {
+    height: 33px;
+    width: 50px;
+    color: white;
+    background-color: midnightblue;
+    border-color: midnightblue;
+    border-radius: 0px 10px 10px 0px;
+}
