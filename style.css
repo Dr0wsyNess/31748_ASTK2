@@ -10,7 +10,7 @@ footer {
 }
 
 .navReservation {
-    float: right;
+    text-align: right;
 }
 
 .nav {
@@ -18,13 +18,11 @@ footer {
     overflow: hidden;
     position: sticky;
     background-color: slateblue;
-    text-align: center;
     }
 
 .nav a {
     display: inline-block;
     color: whitesmoke;
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
@@ -58,6 +56,10 @@ footer {
 
 .item:hover {
     background-color: whitesmoke;
+}
+
+.price{
+    text-align: right;
 }
 
 .default-btn {
