@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta name="index" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <title>Online Car Rental System</title>
+</head>
+
+<body>
+    <div id="top" class="nav">
+        <a href="index.html"><img src="./images/logo_mono.png" width="35"></a>
+        <a class="active" href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <!-- Searchbar -->
+        <form class="searchbar">
+            <input type="text" placeholder="Search products..." name="searchedProduct">
+            <button type="submit" value="retrieveData"><i class="material-icons">search</i></button>
+        </form>
+        <a href="reservation.html" class="navReservation">
+            <i class="material-icons" style="font-size: 100%;">directions_car</i>
+            Car Reservation
+        </a>
+    </div>
+
+    <div class="main">
+        <?php include('car_display.php'); ?>
+    </div>
+
+    <!--Car Reservation Float button-->
+    <div>
+        <a href="reservation.html">
+            <button class="reservation-btn">
+                <i class="material-icons">directions_car</i>
+            </button>
+        </a>
+    </div>
+
+</body>
+
+<footer>
+    <p>
+        Website by &copy; 2023 Vanessa Nguyen [SID: 24507129]
+        <br><br>Programming on the Internet [31748]
+        <br>University of Technology, Sydney
+    </p>
+</footer>
+
+</html>
+
+<?php
+
+?>
