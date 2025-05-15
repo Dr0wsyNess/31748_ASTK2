@@ -15,7 +15,7 @@
         <a href="about.html">About</a>
         <!-- Searchbar -->
         <form class="searchbar">
-            <input type="text" placeholder="Search products..." name="searchedProduct">
+            <input type="text" id="searchBar" placeholder="Search..." name="searchedCar">
             <button type="submit" value="retrieveData"><i class="material-icons">search</i></button>
         </form>
         <a href="reservation.html" class="navReservation">

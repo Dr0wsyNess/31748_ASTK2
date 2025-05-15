@@ -30,7 +30,7 @@
                 ?>
                     <!-- <label style="font-size: 80%">in stock</label><br><br> -->
                     <form method="post" action="index.php">
-                        <!-- <input type="hidden" name="product_id" value="?= $product['product_id'] ?>"> -->
+                        <input type="hidden" name="car_vin" value="?= $car['vin'] ?>">
                         <input type="submit" name="rentThisCar" class="default-btn" value="Rent this car">
                     </form>
                 <?php
