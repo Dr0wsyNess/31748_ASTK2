@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <meta name="index" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -10,18 +11,26 @@
 
 <body>
     <div id="top" class="nav">
-        <a href="index.html"><img src="./images/logo_mono.png" width="35"></a>
-        <a class="active" href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <div class="logo">
+            <a href="index.html" class= ="logo"><img src="./images/logo_mono.png" width="35"></a>
+        </div>
+        <div class="leftNav">
+            <a class="active" href="index.html">Home</a>
+            <a href="about.html">About</a>
+        </div>
         <!-- Searchbar -->
-        <form class="searchbar">
-            <input type="text" id="searchBar" placeholder="Search..." name="searchedCar">
-            <button type="submit" value="retrieveData"><i class="material-icons">search</i></button>
-        </form>
-        <a href="reservation.html" class="navReservation">
-            <i class="material-icons" style="font-size: 100%;">directions_car</i>
-            Car Reservation
-        </a>
+        <div class="midNav">
+            <form class="searchbar">
+                <input type="text" id="searchBar" placeholder="Search..." name="searchedCar">
+                <button type="submit" value="retrieveData"><i class="material-icons">search</i></button>
+            </form>
+        </div>
+        <div class="rightNav">
+            <a href="reservation.html">
+                <i class="material-icons" style="font-size: 100%;">directions_car</i>
+                Car Reservation
+            </a>
+        </div>
     </div>
 
     <div class="main">

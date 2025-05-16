@@ -10,6 +10,8 @@
     
 ?>
 
+
+
 <div class="grid">
         <?php
         //Traverse the cars collection and print out each car
