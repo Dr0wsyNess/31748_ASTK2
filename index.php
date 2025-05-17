@@ -10,12 +10,15 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    ?>
     <div id="top" class="nav">
         <div class="logo">
-            <a href="index.html" class= ="logo"><img src="./images/logo_mono.png" width="35"></a>
+            <a href="index.php" class= ="logo"><img src="./images/logo_mono.png" width="35"></a>
         </div>
         <div class="leftNav">
-            <a class="active" href="index.html">Home</a>
+            <a class="active" href="index.php">Home</a>
             <a href="about.html">About</a>
         </div>
         <!-- Searchbar -->
@@ -33,7 +36,11 @@
         </div>
     </div>
 
+    
+
     <div class="main">
+        <p id="test"></p>
+        <?php include('filter.php'); ?>
         <?php include('car_display.php'); ?>
     </div>
 
@@ -50,7 +57,7 @@
 
 <footer>
     <p>
-        Website by &copy; 2023 Vanessa Nguyen [SID: 24507129]
+        Website by &copy; 2025 Vanessa Nguyen [SID: 24507129]
         <br><br>Programming on the Internet [31748]
         <br>University of Technology, Sydney
     </p>

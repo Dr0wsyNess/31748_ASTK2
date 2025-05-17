@@ -8,6 +8,30 @@
     $array = json_decode($strJSONContents, true);
 
     
+    $display = [];
+
+    if(isset($_REQUEST['car_type'])){
+        $type = $_REQUEST['car_type'];
+        //filter through the json array using the request: TYPE
+        $filtered = array_filter($array['cars'], function($car) use ($type){
+            return strtolower($car['carType']) === strtolower($type);
+        });
+        //populate the array with the filtered data
+        $display['cars'] = $filtered;
+    }
+    else if(isset($_REQUEST['car_brand'])){
+        $brand = $_REQUEST['car_brand'];
+        //filter through the json array using the request: TYPE
+        $filtered = array_filter($array['cars'], function($car) use ($brand){
+            return strtolower($car['brand']) === strtolower($brand);
+        });
+        //populate the array with the filtered data
+        $display['cars'] = $filtered;
+    }
+    else{
+        //display all cars
+        $display = $array;
+    }
 ?>
 
 
@@ -15,7 +39,7 @@
 <div class="grid">
         <?php
         //Traverse the cars collection and print out each car
-        foreach($array["cars"] as &$cars){
+        foreach($display["cars"] as &$cars){
             ?>
             <div class="item">
                 <img src="<?= $cars['image'] ?>" height="100px">
