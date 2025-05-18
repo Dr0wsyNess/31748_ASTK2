@@ -10,7 +10,11 @@
     
     $display = [];
 
-    if(isset($_REQUEST['car_type'])){
+    //filter display via users input in searchbar
+    if(isset($_REQUEST['searchedCar'])){
+
+    }
+    else if(isset($_REQUEST['car_type'])){
         $type = $_REQUEST['car_type'];
         //filter through the json array using the request: TYPE
         $filtered = array_filter($array['cars'], function($car) use ($type){
