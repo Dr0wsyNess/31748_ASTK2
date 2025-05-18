@@ -12,10 +12,16 @@
 <body>
     <?php
     session_start();
+
+    //clear Cart
+    if (isset($_POST['clearReservation'])) {
+        unset($_SESSION['reservation']);
+    }
+
     ?>
     <div id="top" class="nav">
         <div class="logo">
-            <a href="index.php" class= ="logo"><img src="./images/logo_mono.png" width="35"></a>
+            <a href="index.php" class=="logo"><img src="./images/logo_mono.png" width="35"></a>
         </div>
         <div class="leftNav">
             <a class="active" href="index.php">Home</a>
@@ -23,10 +29,10 @@
         </div>
         <!-- Searchbar -->
         <div class="midNav">
-            <form class="searchbar">
+            <!-- <form class="searchbar">
                 <input type="text" id="searchBar" placeholder="Search..." name="searchedCar">
                 <button type="submit" value="retrieveData"><i class="material-icons">search</i></button>
-            </form>
+            </form> -->
         </div>
         <div class="rightNav">
             <a href="reservation.php">
@@ -36,35 +42,30 @@
         </div>
     </div>
 
+
+
+    <?php
+    if (empty($_SESSION['reservation'])) {
+    ?>
+        <div class="main">
+            <h1>Cart</h1>
+            <div class="main" style="text-align: center;">
+                <h3>Your Reservation is empty</h3>
+                <p>No car is currently in reversed.</p>
+                <a href="index.php">
+                    <button class="checkOut-btn">Return to Home</button>
+                </a> <br> <br>
+                <a href="delivery.php"><button class="checkOut-btn" type="button" disabled>Check Out</button> </a>
+            </div>
+    <?php
+    }
+    else{
+        $reservation = $_SESSION['reservation'];
+        ?>
+        
     
-
-    <div class="main">
-        <p id="test"></p>
-        <?php include('filter.php'); ?>
-        <?php include('car_display.php'); ?>
-    </div>
-
-    <!--Car Reservation Float button-->
-    <div>
-        <a href="reservation.html">
-            <button class="reservation-btn">
-                <i class="material-icons">directions_car</i>
-            </button>
-        </a>
-    </div>
-
+    <?php
+    }
+    ?>
+        </div>
 </body>
-
-<footer>
-    <p>
-        Website by &copy; 2025 Vanessa Nguyen [SID: 24507129]
-        <br><br>Programming on the Internet [31748]
-        <br>University of Technology, Sydney
-    </p>
-</footer>
-<script src="index.js"></script>
-</html>
-
-<?php
-
-?>
