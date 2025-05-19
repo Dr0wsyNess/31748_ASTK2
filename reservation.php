@@ -12,6 +12,14 @@
 <body>
     <?php
     session_start();
+    // read cars.json file from local disk
+    $strJSONContents = file_get_contents("cars.json");
+
+    // Decode it:
+    // When the second argument is true, JSON objects will be returned as associative arrays; 
+    // when the second argument is false, JSON objects will be returned as objects.
+    $array = json_decode($strJSONContents, true);
+
 
     //clear Cart
     if (isset($_POST['clearReservation'])) {
@@ -46,7 +54,7 @@
 
     <?php
     if (empty($_SESSION['reservation'])) {
-    ?>
+        ?>
         <div class="main">
             <h1>Cart</h1>
             <div class="main" style="text-align: center;">
@@ -57,12 +65,21 @@
                 </a> <br> <br>
                 <a href="delivery.php"><button class="checkOut-btn" type="button" disabled>Check Out</button> </a>
             </div>
-    <?php
-    }
-    else{
+            <?php
+    } else {
         $reservation = $_SESSION['reservation'];
+        // print_r($reservation);
+        $cartArray = implode(',', array_keys($reservation));
+        // echo $cartArray;
+        $filtered = array_filter($array['cars'], function($car) use ($cartArray){
+            return strtolower($car['vin']) === strtolower($cartArray);
+        });
+        $display = $filtered;
+        // var_dump($display);
+        
+        $total = 0;
         ?>
-        <div class="main">
+            <div class="main">
                 <h1>Cart</h1>
                 <table>
                     <tr>
@@ -74,16 +91,27 @@
                         <th class="row-titles">Fuel Type</th>
                         <th class="row-titles">Price Per Day</th>
                         <th class="row-titles">Days Rented</th>
-                        <th class="row-titles">Total</th>
                     </tr>
                     <?php
-                    
-                    
-                    
+                    foreach ($display as $cars) {
+                        ?>
+                        <tr>
+                            <td style="text-align: center;"><img src="./images/<?= $cars['image'] ?>" height="100px"></td>
+                            <td><?= $cars['carType'] ?></td>
+                            <td><?= $cars['brand'] ?></td>
+                            <td><?= $cars['carModel'] ?></td>
+                            <td><?= $cars['mileage'] ?></td>
+                            <td><?= $cars['fuelType'] ?></td>
+                            <td><?= $cars['pricePerDay'] ?></td>
+
+                        </tr>
+                        <?php
+                    }
                     ?>
                     <tfoot>
                         <tr>
-                           
+                            <td colspan="8" class="subtotal" style="text-align: right; font-weight: bold;">Total :
+                                $<?= $total ?></td>
                         </tr>
                     </tfoot>
                 </table> <br>
@@ -94,8 +122,8 @@
                     <a href="delivery.php"><button class="checkOut-btn" type="button">Place an Order</button> </a>
                 </div>
             </div>
-    <?php
+            <?php
     }
     ?>
-        </div>
+    </div>
 </body>
