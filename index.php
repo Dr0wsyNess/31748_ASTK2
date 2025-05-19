@@ -12,6 +12,18 @@
 <body>
     <?php
     session_start();
+    //Add to reservation
+    if(isset($_POST['rentThisCar'])){
+        $vin = $_POST['car_vin'];
+        if(isset($_SESSION['reservation'][$vin])){
+            //if product exist in cart add one to quantity
+            $_SESSION['reservation'][$vin]['quantity'] += 1;
+        }
+        else{
+            // if not add new product
+            $_SESSION['reservation'][$vin]['quantity'] = 1;
+        }
+    }
     ?>
     <div id="top" class="nav">
         <div class="logo">

@@ -220,6 +220,34 @@ body {
     border-radius: 0px 10px 10px 0px;
 }
 
+/* -----------------------table------------------------------------------------------------ */
+table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: auto;
+}
+
+th {
+    color: #F1F3F3;
+    border: 1px solid #495e7d;
+    padding: 20px;
+    background-color: #889CB6;
+}
+
+td {
+    padding: 15px;
+    position: relative;
+}
+
+.subtotal {
+    background-color: #e1eaf2;
+}
+
+/* every odd elements row in the table has a background colour */
+tr:nth-child(odd) {
+    background-color: #C8D4E1;
+}
 
 
 /* -----------------------CheckOut------------------------------------------------------------ */

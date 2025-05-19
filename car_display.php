@@ -14,6 +14,8 @@
     if(isset($_REQUEST['searchedCar'])){
         $keyword = $_REQUEST['searchedCar'];
         $filtered = array_filter($array['cars'], function($car) use ($keyword){
+            //https://www.php.net/manual/en/function.str-contains.php
+            //http://stackoverflow.com/questions/53571988/how-to-filter-json-in-php
                 return str_contains(strtolower($car['carType']), strtolower(strtolower($keyword))) ||
                 str_contains(strtolower($car['brand']), strtolower(strtolower($keyword))) ||
                 str_contains(strtolower($car['carModel']), strtolower(strtolower($keyword))) ||
@@ -67,7 +69,7 @@
                 ?>
                     <!-- <label style="font-size: 80%">in stock</label><br><br> -->
                     <form method="post" action="index.php">
-                        <input type="hidden" name="car_vin" value="?= $car['vin'] ?>">
+                        <input type="hidden" name="car_vin" value="<?= $car['vin'] ?>">
                         <input type="submit" name="rentThisCar" class="default-btn" value="Rent this car">
                     </form>
                 <?php

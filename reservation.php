@@ -62,8 +62,38 @@
     else{
         $reservation = $_SESSION['reservation'];
         ?>
-        
-    
+        <div class="main">
+                <h1>Cart</h1>
+                <table>
+                    <tr>
+                        <th class="row-titles">Image</th>
+                        <th class="row-titles">Selected Car Type</th>
+                        <th class="row-titles">Brand</th>
+                        <th class="row-titles">Model</th>
+                        <th class="row-titles">Mileage</th>
+                        <th class="row-titles">Fuel Type</th>
+                        <th class="row-titles">Price Per Day</th>
+                        <th class="row-titles">Days Rented</th>
+                        <th class="row-titles">Total</th>
+                    </tr>
+                    <?php
+                    
+                    
+                    
+                    ?>
+                    <tfoot>
+                        <tr>
+                           
+                        </tr>
+                    </tfoot>
+                </table> <br>
+                <div class="cart-btns">
+                    <form method="post" action="reservation.php">
+                        <input type="submit" value="Clear All" name="clearReservation" class="clearAllCart-btn">
+                    </form>
+                    <a href="delivery.php"><button class="checkOut-btn" type="button">Place an Order</button> </a>
+                </div>
+            </div>
     <?php
     }
     ?>
