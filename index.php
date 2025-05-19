@@ -13,21 +13,22 @@
     <?php
     session_start();
     //Add to reservation
-    if(isset($_POST['rentThisCar'])){
+    if (isset($_POST['rentThisCar'])) {
         $vin = $_POST['car_vin'];
-        if(isset($_SESSION['reservation'][$vin])){
+        if (isset($_SESSION['reservation'][$vin])) {
             //if product exist in cart add one to quantity
             $_SESSION['reservation'][$vin]['quantity'] += 1;
-        }
-        else{
+        } else {
             // if not add new product
             $_SESSION['reservation'][$vin]['quantity'] = 1;
         }
+        header("Location: reservation.php"); // redirect to reservation page
     }
+
     ?>
     <div id="top" class="nav">
         <div class="logo">
-            <a href="index.php" class= ="logo"><img src="./images/logo_mono.png" width="35"></a>
+            <a href="index.php" class=="logo"><img src="./images/logo_mono.png" width="35"></a>
         </div>
         <div class="leftNav">
             <a class="active" href="index.php">Home</a>
@@ -48,7 +49,7 @@
         </div>
     </div>
 
-    
+
 
     <div class="main">
         <p id="test"></p>
@@ -75,6 +76,7 @@
     </p>
 </footer>
 <script src="index.js"></script>
+
 </html>
 
 <?php
