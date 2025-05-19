@@ -12,7 +12,14 @@
 
     //filter display via users input in searchbar
     if(isset($_REQUEST['searchedCar'])){
-
+        $keyword = $_REQUEST['searchedCar'];
+        $filtered = array_filter($array['cars'], function($car) use ($keyword){
+                return str_contains(strtolower($car['carType']), strtolower(strtolower($keyword))) ||
+                str_contains(strtolower($car['brand']), strtolower(strtolower($keyword))) ||
+                str_contains(strtolower($car['carModel']), strtolower(strtolower($keyword))) ||
+                str_contains(strtolower($car['description']), strtolower(strtolower($keyword)));
+        });
+        $display['cars'] = $filtered;
     }
     else if(isset($_REQUEST['car_type'])){
         $type = $_REQUEST['car_type'];
