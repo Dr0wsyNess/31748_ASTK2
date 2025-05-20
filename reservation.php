@@ -18,12 +18,22 @@
     // Decode it:
     // When the second argument is true, JSON objects will be returned as associative arrays; 
     // when the second argument is false, JSON objects will be returned as objects.
-    $array = json_decode($strJSONContents, true);
+    $array = json_decode($strJSONContents, true); 
+    $dateRented = 0;
+    $display = [];
 
 
     //clear Cart
     if (isset($_POST['clearReservation'])) {
         unset($_SESSION['reservation']);
+    }
+
+    if(isset($_POST['dateSubmit'])){
+        $startDate = new DateTime($_POST['startDate']);
+        $endDate = new DateTime($_POST['endDate']);
+        $dateRented = ($startDate->diff($endDate))->days;
+        $total = $dateRented * $display['pricePerDay'];
+        var_dump($display);
     }
 
     ?>
@@ -71,12 +81,12 @@
         // print_r($reservation);
         $cartArray = implode(',', array_keys($reservation));
         // echo $cartArray;
-        $filtered = array_filter($array['cars'], function($car) use ($cartArray){
+        $filtered = array_filter($array['cars'], function ($car) use ($cartArray) {
             return strtolower($car['vin']) === strtolower($cartArray);
         });
         $display = $filtered;
         // var_dump($display);
-        
+    
         $total = 0;
         ?>
             <div class="main">
@@ -90,7 +100,6 @@
                         <th class="row-titles">Mileage</th>
                         <th class="row-titles">Fuel Type</th>
                         <th class="row-titles">Price Per Day</th>
-                        <th class="row-titles">Days Rented</th>
                     </tr>
                     <?php
                     foreach ($display as $cars) {
@@ -103,12 +112,27 @@
                             <td><?= $cars['mileage'] ?></td>
                             <td><?= $cars['fuelType'] ?></td>
                             <td><?= $cars['pricePerDay'] ?></td>
-
                         </tr>
                         <?php
                     }
                     ?>
                     <tfoot>
+                        <tr>
+                            <form method="post">
+                                <td colspan="3" class="subtotal" style="text-align: right; font-weight: bold;">
+                                    <label for="sDate" class="formLabel">START DATE <span style="color: red;">*</span></label>
+                                    <input type="date" name="startDate">
+                                </td>
+                                <td colspan="3" class="subtotal" style="text-align: right; font-weight: bold;">
+                                    <label for="eDate" class="formLabel">END DATE <span style="color: red;">*</span></label>
+                                    <input type="date" name="endDate">
+                                    <input type="submit" name="dateSubmit" hidden>
+                                </td>
+                            </form>
+                            <td colspan="1" class="subtotal" style="text-align: right; font-weight: bold;">Rental Days :
+                                <?= $dateRented ?></td>
+                        </tr>
+
                         <tr>
                             <td colspan="8" class="subtotal" style="text-align: right; font-weight: bold;">Total :
                                 $<?= $total ?></td>
