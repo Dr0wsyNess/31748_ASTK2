@@ -20,7 +20,6 @@
     // when the second argument is false, JSON objects will be returned as objects.
     $array = json_decode($strJSONContents, true); 
     $dateRented = 0;
-    $display = [];
 
 
     //clear Cart
@@ -32,8 +31,7 @@
         $startDate = new DateTime($_POST['startDate']);
         $endDate = new DateTime($_POST['endDate']);
         $dateRented = ($startDate->diff($endDate))->days;
-        $total = $dateRented * $display['pricePerDay'];
-        var_dump($display);
+        // var_dump($display);
     }
 
     ?>
@@ -118,7 +116,8 @@
                     ?>
                     <tfoot>
                         <tr>
-                            <form method="post">
+                            <form method="post" action="">
+                                <input type="hidden" value="<?= $display['vin'] ?>" name="dateID">
                                 <td colspan="3" class="subtotal" style="text-align: right; font-weight: bold;">
                                     <label for="sDate" class="formLabel">START DATE <span style="color: red;">*</span></label>
                                     <input type="date" name="startDate">
@@ -135,7 +134,7 @@
 
                         <tr>
                             <td colspan="8" class="subtotal" style="text-align: right; font-weight: bold;">Total :
-                                $<?= $total ?></td>
+                                $<?= $total = $dateRented * $cars['pricePerDay']; ?></td>
                         </tr>
                     </tfoot>
                 </table> <br>
