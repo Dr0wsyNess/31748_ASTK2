@@ -18,20 +18,37 @@
     // Decode it:
     // When the second argument is true, JSON objects will be returned as associative arrays; 
     // when the second argument is false, JSON objects will be returned as objects.
-    $array = json_decode($strJSONContents, true); 
-    $dateRented = 0;
+    $array = json_decode($strJSONContents, true);
+    $dateRented = $_SESSION['dateRented'] ?? 0;
 
+if (!isset($_SESSION['startDate'])) {
+    $_SESSION['startDate'] = '';
+}
+if (!isset($_SESSION['endDate'])) {
+    $_SESSION['endDate'] = '';
+}
 
     //clear Cart
     if (isset($_POST['clearReservation'])) {
         unset($_SESSION['reservation']);
+        unset($_SESSION['dateRented']);
+        unset($_SESSION['startDate']);
+        unset($_SESSION['endDate']);
+        // Reset the variables too
+        $dateRented = 0;
+        $startDate = '';
+        $endDate = '';
     }
 
-    if(isset($_POST['dateSubmit'])){
+    if (isset($_POST['dateSubmit'])) {
         $startDate = new DateTime($_POST['startDate']);
         $endDate = new DateTime($_POST['endDate']);
         $dateRented = ($startDate->diff($endDate))->days;
-        // var_dump($display);
+        // echo $dateRented;
+
+        $_SESSION['startDate'] = $_POST['startDate'];
+        $_SESSION['endDate'] = $_POST['endDate'];
+        $_SESSION['dateRented'] = $dateRented;
     }
 
     ?>
@@ -62,7 +79,7 @@
 
     <?php
     if (empty($_SESSION['reservation'])) {
-        ?>
+    ?>
         <div class="main">
             <h1>Cart</h1>
             <div class="main" style="text-align: center;">
@@ -73,7 +90,7 @@
                 </a> <br> <br>
                 <a href="delivery.php"><button class="checkOut-btn" type="button" disabled>Check Out</button> </a>
             </div>
-            <?php
+        <?php
     } else {
         $reservation = $_SESSION['reservation'];
         // print_r($reservation);
@@ -84,7 +101,7 @@
         });
         $display = $filtered;
         // var_dump($display);
-    
+
         $total = 0;
         ?>
             <div class="main">
@@ -101,7 +118,7 @@
                     </tr>
                     <?php
                     foreach ($display as $cars) {
-                        ?>
+                    ?>
                         <tr>
                             <td style="text-align: center;"><img src="./images/<?= $cars['image'] ?>" height="100px"></td>
                             <td><?= $cars['carType'] ?></td>
@@ -111,22 +128,22 @@
                             <td><?= $cars['fuelType'] ?></td>
                             <td><?= $cars['pricePerDay'] ?></td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                     <tfoot>
                         <tr>
                             <form method="post" action="">
-                                <input type="hidden" value="<?= $display['vin'] ?>" name="dateID">
+                                <!-- <input type="hidden" value="?= $display['vin'] ?>" name="updateQuantityID"> -->
                                 <td colspan="3" class="subtotal" style="text-align: right; font-weight: bold;">
                                     <label for="sDate" class="formLabel">START DATE <span style="color: red;">*</span></label>
-                                    <input type="date" name="startDate">
+                                    <input type="date" name="startDate" value="<?= $_SESSION['startDate'] ?>" min="<?= date('d/m/Y'); ?>" >
                                 </td>
                                 <td colspan="3" class="subtotal" style="text-align: right; font-weight: bold;">
                                     <label for="eDate" class="formLabel">END DATE <span style="color: red;">*</span></label>
-                                    <input type="date" name="endDate">
-                                    <input type="submit" name="dateSubmit" hidden>
+                                    <input type="date" name="endDate" value="<?= $_SESSION['endDate'] ?>" min="<?= $_SESSION['startDate'] ?>">
                                 </td>
+                                <input type="submit" name="dateSubmit" hidden>
                             </form>
                             <td colspan="1" class="subtotal" style="text-align: right; font-weight: bold;">Rental Days :
                                 <?= $dateRented ?></td>
@@ -145,8 +162,8 @@
                     <a href="delivery.php"><button class="checkOut-btn" type="button">Place an Order</button> </a>
                 </div>
             </div>
-            <?php
+        <?php
     }
-    ?>
-    </div>
+        ?>
+        </div>
 </body>

@@ -13,16 +13,13 @@
 <body>
     <?php
     session_start();
+
     //Add to reservation
     if (isset($_POST['rentThisCar'])) {
         $vin = $_POST['car_vin'];
-        if (isset($_SESSION['reservation'][$vin])) {
-            //if product exist in cart add one to quantity
-            $_SESSION['reservation'][$vin]['quantity'] += 1;
-        } else {
-            // if not add new product
-            $_SESSION['reservation'][$vin]['quantity'] = 1;
-        }
+        //clear the existing reservation array and add new car
+        $_SESSION['reservation'] = array();
+        $_SESSION['reservation'][$vin]['quantity'] = 1;
         header("Location: reservation.php"); // redirect to reservation page
     }
 
