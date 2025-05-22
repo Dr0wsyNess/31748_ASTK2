@@ -155,9 +155,11 @@ if (!isset($_SESSION['endDate'])) {
                         </tr>
                     </tfoot>
                 </table> <br>
+                <?php include('checkout.php'); ?>
+
                 <div class="cart-btns">
                     <form method="post" action="reservation.php">
-                        <input type="submit" value="Clear All" name="clearReservation" class="clearAllCart-btn">
+                        <input type="submit" value="Cancel" name="clearReservation" class="clearAllCart-btn">
                     </form>
                     <a href="delivery.php"><button class="checkOut-btn" type="button">Place an Order</button> </a>
                 </div>
