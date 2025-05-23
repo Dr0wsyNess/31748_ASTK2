@@ -34,6 +34,7 @@ if (!isset($_SESSION['endDate'])) {
         unset($_SESSION['dateRented']);
         unset($_SESSION['startDate']);
         unset($_SESSION['endDate']);
+        unset($_SESSION['fname']);
         // Reset the variables too
         $dateRented = 0;
         $startDate = '';
@@ -127,6 +128,7 @@ if (!isset($_SESSION['endDate'])) {
                             <td><?= $cars['mileage'] ?></td>
                             <td><?= $cars['fuelType'] ?></td>
                             <td><?= $cars['pricePerDay'] ?></td>
+                            <?php $available = $cars['available'] ?>
                         </tr>
                     <?php
                     }
@@ -155,8 +157,21 @@ if (!isset($_SESSION['endDate'])) {
                         </tr>
                     </tfoot>
                 </table> <br>
-                <?php include('checkout.php'); ?>
-
+                <?php 
+                //check if the car is still available, if yes display the checkout form. if not notify users that its unavailable
+                if($available){
+                    include('checkout.php');
+                }
+                else{
+                    ?>
+                    <h3>This car is now unavailable </h3>
+                    <!-- <p>No car is currently in reversed.</p> -->
+                <a href="index.php">
+                    <button class="checkOut-btn">Return to Home</button>
+                </a> <br> <br>
+                    <?php
+                }
+                ?>
                 <div class="cart-btns">
                     <form method="post" action="reservation.php">
                         <input type="submit" value="Cancel" name="clearReservation" class="clearAllCart-btn">

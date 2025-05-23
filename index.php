@@ -13,7 +13,6 @@
 <body>
     <?php
     session_start();
-
     //Add to reservation
     if (isset($_POST['rentThisCar'])) {
         $vin = $_POST['car_vin'];

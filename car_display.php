@@ -6,7 +6,6 @@
     // When the second argument is true, JSON objects will be returned as associative arrays; 
     // when the second argument is false, JSON objects will be returned as objects.
     $array = json_decode($strJSONContents, true);
-
     
     $display = [];
 
