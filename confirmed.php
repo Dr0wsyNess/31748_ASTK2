@@ -52,7 +52,7 @@
                         "startDate" => $_POST['startDate'],
                         "rentalPeriod" => $dateRented,
                         "totalPrice" => $dateRented * $cars['pricePerDay'],
-                        "orderDate" => date('d-m-Y')
+                        "orderDate" => date('Y-m-d')
                     )
                 );
                 $orderArray["orders"][] = $newOrder;
@@ -71,12 +71,6 @@
         }
         //clear session & reset the variables 
         unset($_SESSION['reservation']);
-        // unset($_SESSION['dateRented']);
-        // unset($_SESSION['startDate']);
-        // unset($_SESSION['endDate']);
-        // $dateRented = 0;
-        // $startDate = '';
-        // $endDate = '';
     }
     ?>
     <div id="top" class="nav">

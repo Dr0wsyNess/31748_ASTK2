@@ -19,59 +19,11 @@
     // When the second argument is true, JSON objects will be returned as associative arrays; 
     // when the second argument is false, JSON objects will be returned as objects.
     $array = json_decode($strJSONContents, true);
-    $dateRented = $_SESSION['dateRented'] ?? null;
-
-if (!isset($_SESSION['startDate'])) {
-    $_SESSION['startDate'] = '';
-}
-if (!isset($_SESSION['endDate'])) {
-    $_SESSION['endDate'] = '';
-}
 
     //clear Cart
     if (isset($_POST['clearReservation'])) {
         unset($_SESSION['reservation']);
-        unset($_SESSION['dateRented']);
-        unset($_SESSION['startDate']);
-        unset($_SESSION['endDate']);
-        unset($_SESSION['fname']);
-        // Reset the variables too
-        $dateRented = null;
-        $startDate = '';
-        $endDate = '';
     }
-
-    // if (isset($_POST['dateSubmit'])) {
-    //     $startDate = new DateTime($_POST['startDate']);
-    //     $endDate = new DateTime($_POST['endDate']);
-    //     $dateRented = ($startDate->diff($endDate))->days;
-    //     // echo $dateRented;
-
-    //     $_SESSION['startDate'] = $_POST['startDate'];
-    //     $_SESSION['endDate'] = $_POST['endDate'];
-    //     $_SESSION['dateRented'] = $dateRented;
-    // }
-    if (isset($_POST['checkoutForm'])) {
-        $startDate = new DateTime($_POST['startDate']);
-        $endDate = new DateTime($_POST['endDate']);
-        $dateRented = ($startDate->diff($endDate))->days;
-        // echo $dateRented;
-
-        $_SESSION['startDate'] = $_POST['startDate'];
-        $_SESSION['endDate'] = $_POST['endDate'];
-        $_SESSION['dateRented'] = $dateRented;
-    }
-
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //     $startDate = new DateTime($_POST['startDate']);
-    //     $endDate = new DateTime($_POST['endDate']);
-    //     $dateRented = ($startDate->diff($endDate))->days;
-    //     // echo $dateRented;
-
-    //     $_SESSION['startDate'] = $_POST['startDate'];
-    //     $_SESSION['endDate'] = $_POST['endDate'];
-    //     $_SESSION['dateRented'] = $dateRented;
-    // }
 
     ?>
     <div id="top" class="nav">
@@ -110,7 +62,6 @@ if (!isset($_SESSION['endDate'])) {
                 <a href="index.php">
                     <button class="checkOut-btn">Return to Home</button>
                 </a> <br> <br>
-                <a href="delivery.php"><button class="checkOut-btn" type="button" disabled>Check Out</button> </a>
             </div>
         <?php
     } else {
@@ -154,29 +105,7 @@ if (!isset($_SESSION['endDate'])) {
                     <?php
                     }
                     ?>
-                    <tfoot>
-                        <tr>
-                            <form method="post" action="">
-                                <!-- <input type="hidden" value="?= $display['vin'] ?>" name="updateQuantityID"> -->
-                                <td colspan="3" class="subtotal" style="text-align: right; font-weight: bold;">
-                                    <label for="sDate" class="formLabel">START DATE <span style="color: red;">*</span></label>
-                                    <input type="date" name="startDate" value="<?= $_SESSION['startDate'] ?>" min="<?= date('d/m/Y'); ?>" >
-                                </td>
-                                <td colspan="3" class="subtotal" style="text-align: right; font-weight: bold;">
-                                    <label for="eDate" class="formLabel">END DATE <span style="color: red;">*</span></label>
-                                    <input type="date" name="endDate" value="<?= $_SESSION['endDate'] ?>" min="<?= $_SESSION['startDate'] ?>">
-                                </td>
-                                <input type="submit" name="dateSubmit" hidden>
-                            </form>
-                            <td colspan="1" class="subtotal" style="text-align: right; font-weight: bold;">Rental Days :
-                                <?= $dateRented ?></td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="8" class="subtotal" style="text-align: right; font-weight: bold;">Total :
-                                $<?= $total = $dateRented * $cars['pricePerDay']; ?></td>
-                        </tr>
-                    </tfoot>
+                    
                 </table> <br>
                 <?php 
                 //check if the car is still available, if yes display the checkout form. if not notify users that its unavailable
@@ -197,7 +126,6 @@ if (!isset($_SESSION['endDate'])) {
                     <form method="post" action="reservation.php">
                         <input type="submit" value="Cancel" name="clearReservation" class="clearAllCart-btn">
                     </form>
-                    <a href="delivery.php"><button class="checkOut-btn" type="button">Place an Order</button> </a>
                 </div>
             </div>
         <?php

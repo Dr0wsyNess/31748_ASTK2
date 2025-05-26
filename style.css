@@ -315,6 +315,10 @@ tr:nth-child(odd) {
     border-color: grey;
 }
 
+.error-message{
+    font-size: 10px;
+    color: red;
+}
 
 /* -----------------------Delivery------------------------------------------------------------ */
 /* .container{
