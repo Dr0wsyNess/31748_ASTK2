@@ -221,13 +221,13 @@ body {
 }
 
 #searchBar {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 20px;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
 /* -----------------------table------------------------------------------------------------ */
 table {
@@ -313,4 +313,39 @@ tr:nth-child(odd) {
     color: grey;
     background-color: lightgray;
     border-color: grey;
+}
+
+
+/* -----------------------Delivery------------------------------------------------------------ */
+/* .container{
+  display:grid;
+  grid-template-columns: auto auto;
+} */
+
+.deliveryDetail {
+    align-items: center;
+}
+
+/* .deliveryCart{
+  border-radius: 5px;
+  border-color: #94ABC8;
+
+} */
+
+.formLabel {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formField {
+    display: block;
+    width: 200px;
+    padding: 12px 10px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
 }

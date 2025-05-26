@@ -19,7 +19,7 @@
     // When the second argument is true, JSON objects will be returned as associative arrays; 
     // when the second argument is false, JSON objects will be returned as objects.
     $array = json_decode($strJSONContents, true);
-    $dateRented = $_SESSION['dateRented'] ?? 0;
+    $dateRented = $_SESSION['dateRented'] ?? null;
 
 if (!isset($_SESSION['startDate'])) {
     $_SESSION['startDate'] = '';
@@ -36,12 +36,22 @@ if (!isset($_SESSION['endDate'])) {
         unset($_SESSION['endDate']);
         unset($_SESSION['fname']);
         // Reset the variables too
-        $dateRented = 0;
+        $dateRented = null;
         $startDate = '';
         $endDate = '';
     }
 
-    if (isset($_POST['dateSubmit'])) {
+    // if (isset($_POST['dateSubmit'])) {
+    //     $startDate = new DateTime($_POST['startDate']);
+    //     $endDate = new DateTime($_POST['endDate']);
+    //     $dateRented = ($startDate->diff($endDate))->days;
+    //     // echo $dateRented;
+
+    //     $_SESSION['startDate'] = $_POST['startDate'];
+    //     $_SESSION['endDate'] = $_POST['endDate'];
+    //     $_SESSION['dateRented'] = $dateRented;
+    // }
+    if (isset($_POST['checkoutForm'])) {
         $startDate = new DateTime($_POST['startDate']);
         $endDate = new DateTime($_POST['endDate']);
         $dateRented = ($startDate->diff($endDate))->days;
@@ -51,6 +61,17 @@ if (!isset($_SESSION['endDate'])) {
         $_SESSION['endDate'] = $_POST['endDate'];
         $_SESSION['dateRented'] = $dateRented;
     }
+
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //     $startDate = new DateTime($_POST['startDate']);
+    //     $endDate = new DateTime($_POST['endDate']);
+    //     $dateRented = ($startDate->diff($endDate))->days;
+    //     // echo $dateRented;
+
+    //     $_SESSION['startDate'] = $_POST['startDate'];
+    //     $_SESSION['endDate'] = $_POST['endDate'];
+    //     $_SESSION['dateRented'] = $dateRented;
+    // }
 
     ?>
     <div id="top" class="nav">

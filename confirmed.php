@@ -34,6 +34,9 @@
                 echo "<script>alert ('$message'); window.location.href='reservation.php';</script>";
                 exit();
             } else {
+                $startDate = new DateTime($_POST['startDate']);
+                $endDate = new DateTime($_POST['endDate']);
+                $dateRented = ($startDate->diff($endDate))->days;
                 //if the car is available --> add order to the order.json
                 $newOrder = array(
                     "customer" => array(
@@ -47,8 +50,8 @@
                     ),
                     "rental" => array(
                         "startDate" => $_POST['startDate'],
-                        "rentalPeriod" => $_SESSION['dateRented'],
-                        "totalPrice" => $_SESSION['dateRented'] * $cars['pricePerDay'],
+                        "rentalPeriod" => $dateRented,
+                        "totalPrice" => $dateRented * $cars['pricePerDay'],
                         "orderDate" => date('d-m-Y')
                     )
                 );
@@ -57,8 +60,8 @@
                 file_put_contents("orders.json", $newStrPretty);
 
                 //set the car to unavailable and write into cars.json
-                foreach($array['cars'] as $key => $value){
-                    if($value['vin'] == $cars['vin']){
+                foreach ($array['cars'] as $key => $value) {
+                    if ($value['vin'] == $cars['vin']) {
                         $array['cars'][$key]['available'] = false;
                     }
                 }
@@ -68,12 +71,12 @@
         }
         //clear session & reset the variables 
         unset($_SESSION['reservation']);
-        unset($_SESSION['dateRented']);
-        unset($_SESSION['startDate']);
-        unset($_SESSION['endDate']);
-        $dateRented = 0;
-        $startDate = '';
-        $endDate = '';
+        // unset($_SESSION['dateRented']);
+        // unset($_SESSION['startDate']);
+        // unset($_SESSION['endDate']);
+        // $dateRented = 0;
+        // $startDate = '';
+        // $endDate = '';
     }
     ?>
     <div id="top" class="nav">
@@ -100,7 +103,8 @@
     </div>
     <div class="main" style="text-align: center;">
         <h1>Order Confirmation</h1>
-        <p>Thanks <b><?= $_POST['fname'] ?></b> for rending at <b><span class="span">Drowsy Online Car Rental</span></b>. Order Summary has been send to your email, <b><?= $_POST['email'] ?></b></p>
+        <p>Thanks <b><?= $_POST['fname'] ?></b> for rending at <b><span class="span">Drowsy Online Car
+                    Rental</span></b>. Order Summary has been send to your email, <b><?= $_POST['email'] ?></b></p>
         <br> <br>
         <a href="index.php">
             <button class="checkOut-btn">Return to Home</button>

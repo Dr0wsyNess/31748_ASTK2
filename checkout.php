@@ -47,7 +47,8 @@ if (!isset($_SESSION['fname'])) {
                 <div class="rowGroup">
                     <label for="license" class="formLabel">DRIVER'S LICENSE NUMBER <span
                             style="color: red;">*</span></label>
-                    <input type="text" id="license" name="license" class="formField" minlength="10" maxlength="10" pattern="^D[0-9]{9}$" required>
+                    <input type="text" id="license" name="license" class="formField" minlength="10" maxlength="10"
+                        pattern="^D[0-9]{9}$" required>
                 </div>
             </div> <br>
             <div class="row">
@@ -58,41 +59,25 @@ if (!isset($_SESSION['fname'])) {
                 </div>
                 <div class="rowGroup">
                     <label for="eDate" class="formLabel">END DATE <span style="color: red;">*</span></label>
-                    <input type="date" name="endDate" id="endDAte" value="<?= $_SESSION['endDate'] ?>"
+                    <input type="date" name="endDate" id="endDate" value="<?= $_SESSION['endDate'] ?>"
                         min="<?= $_SESSION['startDate'] ?>">
                 </div>
             </div> <br>
-            <!-- <div class="row">
-                    <div class="rowGroup">
-                        <label for="suburb" class="formLabel">CITY/ SUBURB <span style="color: red;">*</span></label>
-                        <input type="text" id="suburb" name="suburb" class="formField" required>
-                    </div> 
-                    <div class="rowGroup">
-                        <label for="state" class="formLabel">STATE <span style="color: red;">*</span></label>
-                        <select id="state" name="state" class="formField" required>
-                            <option value="nsw">NSW</option>
-                            <option value="vic">VIC</option>
-                            <option value="qld">QLD</option>
-                            <option value="wa">WA</option>
-                            <option value="sa">SA</option>
-                            <option value="tas">TAS</option>
-                            <option value="act">ACT</option>
-                            <option value="nt">NT</option>
-                            <option value="others">Others</option>
-                        </select>
-                    </div>
-                </div> <br>
-                <div class="row">
-                    <div class="rowGroup">
-                        <label for="postcode" class="formLabel">POSTCODE <span style="color: red;">*</span></label>
-                        <input type="number" id="postcode" name="postcode" min="0200" max="9999" class="formField" required>
-                    </div>
-                </div> -->
             <div class="row">
                 <div class="rowGroup">
-                    Rental Days :<?= $dateRented ?></td>
+                    <p id="rentalDays"></p>
+                    HTML Rental Days :
+                    <?php
+                    if ($dateRented !== null) {
+                        ?>
+                        <p><?php echo $dateRented; ?> </p>
+                        <?php
+                    }
+                    ?>
+                    <!-- Rental Days :<= $dateRented ?></td> -->
                 </div>
                 <div class="rowGroup">
+                    <p id="total"></p>
                     Total : $<?= $total = $dateRented * $cars['pricePerDay']; ?></td>
                 </div>
                 <div style="text-align: center;">
@@ -100,10 +85,25 @@ if (!isset($_SESSION['fname'])) {
                 </div>
         </form>
         <div id="response"></div>
-
-    </div>
-    <p id="test">text</p>
+    </div>  
     <script>
+        document.getElementById('checkoutForm').addEventListener('change', function (e) {
+            const startDate = new Date(document.getElementById("startDate").value);
+            const endDate = new Date(document.getElementById("endDate").value);
+            const pricePerDay = "<?php echo $cars['pricePerDay']; ?>"; 
+            if (startDate && endDate && startDate <= endDate) {
+                const diffTime = Math.abs(endDate - startDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                document.getElementById('rentalDays').textContent = `Preview: ${diffDays} day difference`;
+                const total = diffDays * pricePerDay;
+                document.getElementById('total').textContent = `Total: $ ${total}`;
+                
+
+            }
+            else {
+                document.getElementById('rentalDays').textContent = ' ';
+            }
+        });
         // const dateDifferenceInDays = (dateInitial, dateFinal) =>
         //     (dateFinal - dateInitial) / 86_400_000;
         // const form = document.getElementById("checkoutForm");
