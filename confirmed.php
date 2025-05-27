@@ -101,7 +101,7 @@
                     Rental</span></b>. Order Summary has been send to your email, <b><?= $_POST['email'] ?></b></p>
         <br> <br>
         <a href="index.php">
-            <button class="checkOut-btn">Return to Home</button> 
+            <button class="checkOut-btn">Return to Home</button>
         </a> <br> <br>
     </div>
 
