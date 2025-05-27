@@ -23,7 +23,7 @@ foreach ($array["cars"] as &$cars) {
 <div class="filterNav" id="myCatNav">
     <div class="dropdown">
         <div>
-            <p>Car Type</p>
+            <a>Car Type</a>
             <button class="dropdown-btn">
                 <!--down arrow icon-->
                 <i class="material-icons">arrow_drop_down</i>
@@ -33,7 +33,6 @@ foreach ($array["cars"] as &$cars) {
             <?php
             for ($i = 0; $i < count($uniqueType); $i++) {
             ?>
-                <!-- <p><?= $uniqueType[$i] ?></p> -->
                 <!-- url will display carType= with the current carType -->
                 <a href="?car_type=<?= $uniqueType[$i] ?>">
                     <?= $uniqueType[$i] ?>
@@ -45,7 +44,7 @@ foreach ($array["cars"] as &$cars) {
     </div>
     <div class="dropdown">
         <div>
-            <p>Car Brand</p>
+            <a>Car Brand</a>
 
             <button class="dropdown-btn">
                 <!--down arrow icon-->
@@ -56,7 +55,6 @@ foreach ($array["cars"] as &$cars) {
         <?php
             for ($i = 0; $i < count($uniqueBrand); $i++) {
             ?>
-                <!-- <p><?= $uniqueBrand[$i] ?></p> -->
                 <!-- url will display uniqueBrand= with the current uniqueBrand -->
                 <a href="?car_brand=<?= $uniqueBrand[$i] ?>">
                     <?= $uniqueBrand[$i] ?>

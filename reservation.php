@@ -31,18 +31,15 @@
             <a href="index.php" class=="logo"><img src="./images/logo_mono.png" width="35"></a>
         </div>
         <div class="leftNav">
-            <a class="active" href="index.php">Home</a>
-            <a href="about.html">About</a>
+            <a href="index.php">Home</a>
+            <!-- <a href="about.html">About</a> -->
         </div>
         <!-- Searchbar -->
         <div class="midNav">
-            <!-- <form class="searchbar">
-                <input type="text" id="searchBar" placeholder="Search..." name="searchedCar">
-                <button type="submit" value="retrieveData"><i class="material-icons">search</i></button>
-            </form> -->
+
         </div>
         <div class="rightNav">
-            <a href="reservation.php">
+            <a class="active" href="reservation.php">
                 <i class="material-icons" style="font-size: 100%;">directions_car</i>
                 Car Reservation
             </a>
@@ -53,7 +50,7 @@
 
     <?php
     if (empty($_SESSION['reservation'])) {
-    ?>
+        ?>
         <div class="main">
             <h1>Cart</h1>
             <div class="main" style="text-align: center;">
@@ -63,7 +60,7 @@
                     <button class="checkOut-btn">Return to Home</button>
                 </a> <br> <br>
             </div>
-        <?php
+            <?php
     } else {
         $reservation = $_SESSION['reservation'];
         // print_r($reservation);
@@ -74,7 +71,7 @@
         });
         $display = $filtered;
         // var_dump($display);
-
+    
         $total = 0;
         ?>
             <div class="main">
@@ -91,34 +88,34 @@
                     </tr>
                     <?php
                     foreach ($display as $cars) {
-                    ?>
+                        ?>
                         <tr>
-                            <td style="text-align: center;"><img src="./images/<?= $cars['image'] ?>" height="100px"></td>
+                            <td style="text-align: center;"><img src="<?= $cars['image'] ?>" height="100px"></td>
                             <td><?= $cars['carType'] ?></td>
                             <td><?= $cars['brand'] ?></td>
                             <td><?= $cars['carModel'] ?></td>
                             <td><?= $cars['mileage'] ?></td>
                             <td><?= $cars['fuelType'] ?></td>
-                            <td><?= $cars['pricePerDay'] ?></td>
+                            <td>$<?= $cars['pricePerDay'] ?></td>
                             <?php $available = $cars['available'] ?>
                         </tr>
-                    <?php
+                        <?php
                     }
                     ?>
-                    
+
                 </table> <br>
-                <?php 
+                <?php
                 //check if the car is still available, if yes display the checkout form. if not notify users that its unavailable
-                if($available){
+                if ($available) {
                     include('checkout.php');
-                }
-                else{
+                } else {
                     ?>
-                    <h3>This car is now unavailable </h3>
-                    <!-- <p>No car is currently in reversed.</p> -->
-                <a href="index.php">
-                    <button class="checkOut-btn">Return to Home</button>
-                </a> <br> <br>
+                    <div style="text-align: center;">
+                        <h3>This car is now unavailable </h3>
+                        <a href="index.php">
+                            <button class="checkOut-btn">Return to Home</button>
+                        </a> <br> <br>
+                    </div>
                     <?php
                 }
                 ?>
@@ -128,8 +125,17 @@
                     </form>
                 </div>
             </div>
-        <?php
+            <?php
     }
-        ?>
-        </div>
+    ?>
+    </div>
 </body>
+<footer>
+    <p>
+        Website by &copy; 2025 Vanessa Nguyen [SID: 24507129]
+        <br><br>Programming on the Internet [31748]
+        <br>University of Technology, Sydney
+    </p>
+</footer>
+
+</html>

@@ -29,7 +29,7 @@
         </div>
         <div class="leftNav">
             <a class="active" href="index.php">Home</a>
-            <a href="about.html">About</a>
+            <!-- <a href="about.html">About</a> -->
         </div>
         <!-- Searchbar -->
         <div class="midNav">
@@ -49,14 +49,13 @@
 
 
     <div class="main">
-        <p id="test"></p>
         <?php include('filter.php'); ?>
         <?php include('car_display.php'); ?>
     </div>
 
     <!--Car Reservation Float button-->
     <div>
-        <a href="reservation.html">
+        <a href="reservation.php">
             <button class="reservation-btn">
                 <i class="material-icons">directions_car</i>
             </button>

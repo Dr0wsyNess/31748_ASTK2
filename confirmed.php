@@ -101,10 +101,17 @@
                     Rental</span></b>. Order Summary has been send to your email, <b><?= $_POST['email'] ?></b></p>
         <br> <br>
         <a href="index.php">
-            <button class="checkOut-btn">Return to Home</button>
-        </a>
+            <button class="checkOut-btn">Return to Home</button> 
+        </a> <br> <br>
     </div>
 
 </body>
+<footer>
+    <p>
+        Website by &copy; 2025 Vanessa Nguyen [SID: 24507129]
+        <br><br>Programming on the Internet [31748]
+        <br>University of Technology, Sydney
+    </p>
+</footer>
 
 </html>

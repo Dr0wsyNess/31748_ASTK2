@@ -56,17 +56,15 @@
             <div class="item">
                 <img src="<?= $cars['image'] ?>" height="100px">
                 <hr>
-                <h3><?= $cars['carType'] ?></h3>
-                <h4><?= $cars['brand'] ?></h4>
-                <p><?= $cars['mileage'] ?></p>
-                <p><?= $cars['fuelType'] ?></p>
-                <p class="price" style="font-weight: bold">$<?= $cars['pricePerDay'] ?></p>
+                <h3><?= $cars['carType'] ?> <?= $cars['brand'] ?></h3>
+                <p>Mileage: <?= $cars['mileage'] ?></p>
+                <p>Fuel Type: <?= $cars['fuelType'] ?></p>
+                <p class="price" style="font-weight: bold">$<?= $cars['pricePerDay'] ?> per day</p>
                 <p style="font-size: 75%; color: grey"><?= $cars['description'] ?></p>
                 <?php
-                //toggle addCart button which is dependent on the stock quantity
+                //toggle addRent button which is dependent on the stock quantity
                 if ($cars['available']) {
                 ?>
-                    <!-- <label style="font-size: 80%">in stock</label><br><br> -->
                     <form method="post" action="index.php">
                         <input type="hidden" name="car_vin" value="<?= $cars['vin'] ?>">
                         <input type="submit" name="rentThisCar" class="default-btn" value="Rent this car">
@@ -74,7 +72,6 @@
                 <?php
                 } else {
                 ?>
-                    <!-- <label style="font-size: 80%">not in stock</label><br><br> -->
                     <form>
                         <input type="submit" class="default-btn" value="Rent this car" disabled>
                     </form>

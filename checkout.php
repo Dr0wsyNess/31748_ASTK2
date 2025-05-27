@@ -1,20 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
-if (!isset($_SESSION['fname'])) {
-    $_SESSION['fname'] = '';
-}
-
-// if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//     echo "invalid email format";
-// } else {
-//     echo "form submitted";
-// }
-// if(isset($_POST['submitForm'])){
-//     $_SESSION['fname'] = $_POST['fname'];
-// }
-
 ?>
 
 <div class="container">
@@ -51,7 +37,7 @@ if (!isset($_SESSION['fname'])) {
                     <label for="license" class="formLabel">DRIVER'S LICENSE NUMBER <span
                             style="color: red;">*</span></label>
                     <input type="text" id="license" name="license" class="formField" minlength="10" maxlength="10"
-                        pattern="^D[0-9]{9}$" required>
+                        pattern="^D[0-9]{9}$" placeholder="DXXXXXXXXX" required>
                     <p class="error-message" id="invalid-license"></p>
                 </div>
             </div> <br>
@@ -134,7 +120,7 @@ if (!isset($_SESSION['fname'])) {
             }
 
             if (!/^D[0-9]{9}$/.test(license)) {
-                document.getElementById('invalid-license').textContent = "Invalid license format.";
+                document.getElementById('invalid-license').textContent = "Invalid license format. DXXXXXXXXX";
                 licensewrongFormat = true;
             }
             else{
@@ -158,38 +144,6 @@ if (!isset($_SESSION['fname'])) {
             }
 
         });
-        // const form = document.getElementById("checkoutForm");
-        // form.addEventListener("submit", function (event) {
-        //     event.preventDefault();
-        //     // isValid = false;
-        //     // var fname = document.getElementById("fname").value;
-        //     // var startDate = document.getElementById("startDate").value;
-        //     // var endDate = document.getElementById("endDate").value;
-        //     // var email = document.getElementById("email").value;
-        //     // document.getElementById("test").innerHTML = startDate;
-
-        //     // if (!fname) {
-        //     //     alert("Name field is required.");
-        //     //     return false;
-        //     // }
-        //     // if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        //     //     alert("Invalid email format.");
-        //     //     return false;
-        //     // }
-        //     // const formData = new FormData(form);
-
-        //     // fetch(form.action, {
-        //     //     method: 'POST',
-        //     //     body: formData
-        //     // })
-        //     //     .then(response => response.text())
-        //     //     .then(data => {
-        //     //         document.getElementById('response').innerHTML = data;
-        //     //     })
-        //     //     .catch(error => {
-        //     //         console.error('Error:', error);
-        //     //     });
-        // });
     </script>
 
 </html>

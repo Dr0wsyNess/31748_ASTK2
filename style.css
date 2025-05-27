@@ -66,12 +66,11 @@ body {
 
 .filterNav {
     overflow: hidden;
-    background-color: #e1eaf2;
+    background-color: rgb(173, 163, 239);
     text-align: center;
 }
 
 .filterNav a {
-    color: #495e7d;
     font-size: 95%;
     padding: 14px 16px;
     float: left;
@@ -87,7 +86,7 @@ body {
 
 .filterNav a:hover,
 .dropdown:hover .dropdown-btn {
-    background-color: #889CB6;
+    background-color: slateblue;
     color: white;
 }
 
@@ -125,7 +124,7 @@ body {
 }
 
 .dropdown-content a:hover {
-    background-color: #889CB6;
+    background-color: slateblue;
     color: white;
 }
 
@@ -140,7 +139,7 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .item {
@@ -212,7 +211,7 @@ body {
 }
 
 .searchbar button {
-    height: 33px;
+    height: 50px;
     width: 50px;
     color: white;
     background-color: midnightblue;
@@ -230,6 +229,12 @@ body {
 }
 
 /* -----------------------table------------------------------------------------------------ */
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
 table {
     font-family: Verdana, sans-serif;
     border-collapse: collapse;
@@ -238,10 +243,9 @@ table {
 }
 
 th {
-    color: #F1F3F3;
-    border: 1px solid #495e7d;
+    border: 1px solid mediumslateblue;
     padding: 20px;
-    background-color: #889CB6;
+    background-color: rgb(173, 163, 239);
 }
 
 td {
@@ -249,28 +253,8 @@ td {
     position: relative;
 }
 
-.subtotal {
-    background-color: #e1eaf2;
-}
-
-/* every odd elements row in the table has a background colour */
-tr:nth-child(odd) {
-    background-color: #C8D4E1;
-}
-
 
 /* -----------------------CheckOut------------------------------------------------------------ */
-.quantity {
-    font-size: 95%;
-    text-align: center;
-    padding: 12px 0px;
-}
-
-.removeItem-btn {
-    color: #495e7d;
-    text-decoration: underline;
-    border-style: hidden;
-}
 
 .cart-btns {
     display: flex;
@@ -321,20 +305,10 @@ tr:nth-child(odd) {
 }
 
 /* -----------------------Delivery------------------------------------------------------------ */
-/* .container{
-  display:grid;
-  grid-template-columns: auto auto;
-} */
 
-.deliveryDetail {
+.checkoutDetail {
     align-items: center;
 }
-
-/* .deliveryCart{
-  border-radius: 5px;
-  border-color: #94ABC8;
-
-} */
 
 .formLabel {
     display: block;
